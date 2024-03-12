@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible"
+              content="IE=edge">
+        <meta name="viewport"
+              content="width=device-width, initial-scale=1.0">
+        <title>CalcHub</title>
+    </head>
+
+    <body>
+
+        <div class="wrapper">
+            <form action="#">
+                <div class="w-100p mb-0 pb-0">
+                    <h2 class="mt-0">Amount to Set Aside</h2>
+                </div>
+                <div class="mb-0 d-ib w-1/3">
+                    <div>
+                        <label for="paid_sum">Paid Amount</label><br>
+                        <input type="number"
+                               value="1190"
+                               id="paid_sum">
+                    </div>
+
+                    <div>
+                        <label for="mwst">VAT in %</label><br>
+                        <input type="number"
+                               id="mwst"
+                               value="19">
+                    </div>
+
+                    <div>
+                        <label for="puffer">Buffer in %</label><br>
+                        <input type="number"
+                               id="puffer"
+                               value="16">
+                    </div>
+
+                    <div>
+                        <label for="sum">Total</label><br>
+                        <input type="number"
+                               id="sum">
+                    </div>
+
+                    <!-- HTML section for the new input field -->
+                    <div>
+                        <label for="invoice_number">Invoice Number</label><br>
+                        <input type="text"
+                               value="2024000039"
+                               id="invoice_number">
+                    </div>
+                </div>
+                <!-- Output area for formatted invoice number and percentages -->
+                <div id="output"
+                     class="d-ib w-2/3">
+                    <p class="mb-0 mt-0">Totals and Purposes</p>
+                    <div>
+                        <span id="sum-full"
+                              class="output-sum clickable-output"></span>
+                        <div id="output-full"
+                             class="clickable-output"></div>
+                    </div>
+                    <div>
+                        <span id="sum-mwst"
+                              class="output-sum clickable-output"></span>
+                        <div id="output-mwst"
+                             class="clickable-output"></div>
+                    </div>
+                    <div>
+                        <span id="sum-puffer"
+                              class="output-sum clickable-output"></span>
+                        <div id="output-puffer"
+                             class="clickable-output"></div>
+                    </div>
+
+                    <legend>
+                        <p>
+                            <small>
+                                Purposes will be copied to clipboard upon clicking.
+                            </small>
+                        </p>
+                    </legend>
+                </div>
+
+            </form>
+
+            <form action="#">
+
+                <div class="w-100p mb-0 pb-0">
+                    <h2 class="mt-0">Sum Halver</h2>
+                </div>
+
+                <div class="mb-0 d-ib w-1/3">
+                    <div>
+                        <label for="cake_sum">Amount to Halve</label><br>
+                        <input type="number"
+                               id="cake_sum">
+                    </div>
+
+                    <div>
+                        <label for="cake_halfer">Halved Amount</label><br>
+                        <input type="text"
+                               id="cake_halfer">
+                    </div>
+                </div>
+            </form>
+        </div>
+
+
+        <style>
+            html,
+            body {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                background-color: #121212;
+                color: #c7c7c7;
+                font-family: Verdana, Geneva, Tahoma, sans-serif;
+                line-height: 1.4;
+            }
+
+            *,
+            *::before,
+            *::after {
+                box-sizing: inherit;
+            }
+
+            body {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                min-height: 100vh;
+            }
+
+            .wrapper {
+                margin: 0 auto;
+                max-width: 960px;
+                background: rgba(0, 0, 0, .1);
+                border: 2px solid #353535;
+                border-radius: 1rem;
+            }
+
+            form>div {
+                margin: 0 0 1rem;
+                display: inline-block;
+                width: 49%;
+                padding: 2rem;
+                vertical-align: top;
+            }
+
+            form>div:last-child {
+                margin: 0;
+            }
+
+            input,
+            .clickable-output {
+                cursor: pointer;
+                margin: 10px 0;
+                padding: .5rem 1rem;
+                background-color: #313131;
+                border: 2px solid rgba(255, 255, 255, 0.1);
+                font-size: 1rem;
+                width: 100%;
+                color: inherit;
+                border-radius: 1em;
+                display: inline-block;
+                text-align: left;
+                text-align-last: left;
+                vertical-align: top;
+                word-break: break-word;
+            }
+
+            .output-sum {
+                display: inline-block;
+                width: 5em;
+            }
+
+            .output-sum+.clickable-output {
+                width: calc(100% - 5em - 1em);
+            }
+
+            input {
+                background-color: #313131;
+            }
+
+            .clickable-output:hover {
+                background-color: #535353;
+            }
+
+            .clickable-output.success {
+                border-color: #00d700;
+            }
+
+            .d-ib {
+                display: inline-block;
+            }
+
+            .w-100p {
+                width: 100%;
+                max-width: 100%;
+            }
+
+            .w-1\/3 {
+                width: calc((100% / 3) - .2em);
+            }
+
+            .w-2\/3 {
+                width: calc((100% / 3 * 2) - .2em);
+            }
+
+            .mt-0 {
+                margin-top: 0;
+            }
+
+            .mb-0 {
+                margin-bottom: 0;
+            }
+
+            .pb-0 {
+                padding-bottom: 0;
+            }
+
+            #output {
+                text-align: justify;
+                text-align-last: justify;
+            }
+
+            .legend,
+            p,
+            h2 {
+                text-align: left;
+                text-align-last: left;
+            }
+        </style>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                var paidSum = document.getElementById('paid_sum'),
+                    mwst = document.getElementById('mwst'),
+                    puffer = document.getElementById('puffer'),
+                    sum = document.getElementById('sum'),
+                    invoiceNumber = document.getElementById('invoice_number'),
+                    sumFull = document.getElementById('sum-full'),
+                    sumMwst = document.getElementById('sum-mwst'),
+                    sumPuffer = document.getElementById('sum-puffer'),
+                    outputFull = document.getElementById('output-full'),
+                    outputMwst = document.getElementById('output-mwst'),
+                    outputPuffer = document.getElementById('output-puffer');
+
+                function updateOutput() {
+                    var baseSum = parseFloat(paidSum.value),
+                        mwstRate = parseFloat(mwst.value) / 100,
+                        pufferRate = parseFloat(puffer.value) / 100,
+                        invoiceNum = invoiceNumber.value,
+                        mwstSum = baseSum - (baseSum / (1 + mwstRate)),
+                        pufferSum = baseSum - (baseSum / (1 + pufferRate)),
+                        sumFullVal = mwstSum + pufferSum;
+
+                    mwstSum = Math.ceil(mwstSum);
+                    pufferSum = Math.ceil(pufferSum);
+                    sumFullVal = Math.ceil(sumFullVal);
+
+                    sum.value = Math.ceil(baseSum + sumFullVal);
+                    sumFull.textContent = `${sumFullVal}`;
+                    sumMwst.textContent = `${mwstSum}`;
+                    sumPuffer.textContent = `${pufferSum}`;
+
+                    outputFull.textContent = `RE ${invoiceNum} ${mwstRate * 100}% MwSt. + ${pufferRate * 100}% Puffer`;
+                    outputMwst.textContent = `RE ${invoiceNum} ${mwstRate * 100}% MwSt.`;
+                    outputPuffer.textContent = `RE ${invoiceNum} ${pufferRate * 100}% Puffer`;
+
+                    document.querySelectorAll('.clickable-output').forEach(function (element) {
+                        element.addEventListener('click', function () {
+                            navigator.clipboard.writeText(this.textContent).then(function () {
+                                element.classList.add('success');
+                                setTimeout(() => element.classList.remove('success'), 1000);
+                            }, function (err) {
+                                console.error('Fehler beim Kopieren', err);
+                            });
+                        });
+                    });
+                }
+
+                paidSum.addEventListener('input', updateOutput);
+                mwst.addEventListener('input', updateOutput);
+                puffer.addEventListener('input', updateOutput);
+                invoiceNumber.addEventListener('input', updateOutput);
+
+                // Für den Cake Halfer Teil
+                var cakeSum = document.getElementById('cake_sum'),
+                    cakeHalfer = document.getElementById('cake_halfer');
+
+                cakeSum.addEventListener('input', function () {
+                    cakeHalfer.value = cakeSum.value / 2;
+                });
+
+                // Initialer Aufruf
+                updateOutput();
+            });
+
+        </script>
+    </body>
+
+</html>
